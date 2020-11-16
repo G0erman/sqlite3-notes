@@ -1,2 +1,6 @@
 # sqlite3-notes
-Notes about sqlite3 from oficial Python documentation.
+Notes about sqlite3 from official Python documentation.
+
+# Objetives:
+* Explain the documentation throug examples.
+* Provide statistics over documentation in English and Spanish.
