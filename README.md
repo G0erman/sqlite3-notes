@@ -1,5 +1,5 @@
 # sqlite3-notes
-Notes about sqlite3 from official Python documentation.
+Notes about [sqlite3](https://docs.python.org/3.8/library/sqlite3.html) from official Python documentation.
 
 # Objetives:
 * Explain the documentation throug examples.
