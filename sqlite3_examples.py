@@ -30,6 +30,32 @@ print(cur.fetchall())
 con.close()
 
 ###############################################################################
+""" Using shortcuts methods, executemany to insert multiple records"""
+import sqlite3
+
+persons = [
+    ("Hugo", "Boos"),
+    ("Calvin", "Klein")
+]
+
+con = sqlite3.connect(":memory:")
+
+# Create table
+con.execute("create table person(first_name, last_name)")
+
+# Fill the table
+con.executemany("insert into person(first_name, last_name) values (?, ?)", persons)
+
+# Print the table contents
+for row in con.execute("select * from person"):
+    print(row)
+
+print("I just deleted", con.execute("delete from person").rowcount, "rows")
+
+con.close()
+
+
+###############################################################################
 """Agregate function."""
 import sqlite3
 
@@ -378,31 +404,6 @@ cur = con.cursor()
 now = datetime.datetime.now()
 cur.execute("SELECT ?", (now,))
 print(cur.fetchone()[0])
-con.close()
-
-###############################################################################
-""" Using shortcuts methods."""
-import sqlite3
-
-persons = [
-    ("Hugo", "Boos"),
-    ("Calvin", "Klein")
-]
-
-con = sqlite3.connect(":memory:")
-
-# Create table
-con.execute("create table person(first_name, last_name)")
-
-# Fill the table
-con.executemany("insert into person(first_name, last_name) values (?, ?)", persons)
-
-# Print the table contents
-for row in con.execute("select * from person"):
-    print(row)
-
-print("I just deleted", con.execute("delete from person").rowcount, "rows")
-
 con.close()
 
 ####################################################################################
