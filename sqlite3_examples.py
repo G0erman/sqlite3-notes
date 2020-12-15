@@ -1,3 +1,35 @@
+###############################################################################
+"""Execute scripts."""
+import sqlite3
+
+con = sqlite3.connect(":memory:")
+cur = con.cursor()
+cur.executescript("""
+    create table person(
+        fristname,
+        lastname,
+        age
+    );
+
+    create table book(
+        title,
+        author,
+        published
+    );
+
+    insert into book(title, author, published)
+    values(
+        'Dirty pother',
+        'El bananero',
+        2014
+    );
+""")
+
+cur.execute("select * from book")
+print(cur.fetchall())
+con.close()
+
+###############################################################################
 """Agregate function."""
 import sqlite3
 
@@ -64,6 +96,8 @@ con.close()
 
 
 ###############################################################################
+"""Dictionary."""
+
 import sqlite3
 
 
@@ -220,37 +254,6 @@ cur.executemany("insert into characteres(c) values (?)",char_generator())
 cur.execute("select * from characteres")
 print(cur.fetchall())
 
-con.close()
-
-###############################################################################
-"""Execute script method."""
-import sqlite3
-
-con = sqlite3.connect(":memory:")
-cur = con.cursor()
-cur.executescript("""
-    create table person(
-        fristname,
-        lastname,
-        age
-    );
-
-    create table book(
-        title,
-        author,
-        published
-    );
-
-    insert into book(title, author, published)
-    values(
-        'Dirty pother',
-        'El bananero',
-        2014
-    );
-""")
-
-cur.execute("select * from book")
-print(cur.fetchall())
 con.close()
 
 ###############################################################################
